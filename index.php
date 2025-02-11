@@ -4,21 +4,17 @@ include 'Connection_BDD.php';  // Vérifie si le chemin est correct
 // Récupérer une instance de PDO
 $pdo = Connection::getPDO();  // Cette ligne doit renvoyer un objet PDO
 
-if ($pdo) {
-    // Si la connexion est établie, exécuter la requête
-    $sql = "SELECT * FROM quiz LIMIT 1";
-    $stmt = $pdo->query($sql);
+// Vérifier si un thème est sélectionné, sinon utiliser "cinema" par défaut
+$theme = isset($_GET['theme']) ? $_GET['theme'] : 'cinema';  // Récupérer le thème via GET ou 'cinema' par défaut
 
-    // Vérifier si une question a été trouvée
-    if ($stmt->rowCount() > 0) {
-        // Récupérer la première question
-        $question = $stmt->fetch(PDO::FETCH_ASSOC);
-    } else {
-        $question = null; // Si aucune question n'est trouvée, définir $question à null
-    }
-} else {
-    die("La connexion à la base de données a échoué.");
-}
+// Requête SQL pour récupérer les questions filtrées par thème
+$query = 'SELECT * FROM quiz WHERE theme = :theme';  // Utilisation d'un paramètre préparé pour éviter les injections SQL
+$stmt = $pdo->prepare($query);
+$stmt->bindParam(':theme', $theme, PDO::PARAM_STR);  // Lier le paramètre du thème
+$stmt->execute();
+
+// Récupérer les résultats sous forme de tableau associatif
+$questions = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 
@@ -66,25 +62,20 @@ if ($pdo) {
         </details>
         <details>
             <summary>Football</summary>
-            <h2>test</h2>
+            <?php if (!empty($choix)): ?>
+    <ul>
+        <?php foreach ($choix as $choixReponse): ?>
+            <li><?php echo htmlspecialchars($choixReponse['choix']); ?></li>
+        <?php endforeach; ?>
+    </ul>
+<?php else: ?>
+    <p>Aucun choix de réponse disponible.</p>
+<?php endif; ?>
+    </section>
         </details>
     </div>
 
-    <!-- Affichage de la question du quiz -->
-    <?php if ($question): ?>
-        <section class="quiz-container">
-            <h3>Question du quiz :</h3>
-            <p><?php echo htmlspecialchars($question['question']); ?></p> <!-- Affichage de la question -->
-            <ul>
-                <li><?php echo htmlspecialchars($question['reponse1']); ?></li>
-                <li><?php echo htmlspecialchars($question['reponse2']); ?></li>
-                <li><?php echo htmlspecialchars($question['reponse3']); ?></li>
-                <li><?php echo htmlspecialchars($question['reponse4']); ?></li>
-            </ul>
-        </section>
-    <?php else: ?>
-        <p>Aucune question trouvée.</p>
-    <?php endif; ?>
+    
 
 </body>
 </html>
