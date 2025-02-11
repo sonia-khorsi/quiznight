@@ -1,7 +1,7 @@
 <?php 
 
  session_start();
-require "quiz-night(2).sql";
+require "quiznight.sql";
 
 
 if ($_POST) {
