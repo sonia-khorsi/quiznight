@@ -1,22 +1,21 @@
 <?php
-include 'Connection_BDD.php';  // Vérifie si le chemin est correct
+include 'Connection_BDD.php';
 
-// Récupérer une instance de PDO
-$pdo = Connection::getPDO();  // Cette ligne doit renvoyer un objet PDO
+$pdo = Connection::getPDO();
 
-// Vérifier si un thème est sélectionné, sinon utiliser "cinema" par défaut
-$theme = isset($_GET['theme']) ? $_GET['theme'] : 'cinema';  // Récupérer le thème via GET ou 'cinema' par défaut
+$queryAll = "SELECT * FROM quiz ORDER BY `theme`";
+$stmtAll = $pdo->query($queryAll);
+$allQuestions = $stmtAll->fetchAll(PDO::FETCH_ASSOC);
 
-// Requête SQL pour récupérer les questions filtrées par thème
-$query = 'SELECT * FROM quiz WHERE theme = :theme';  // Utilisation d'un paramètre préparé pour éviter les injections SQL
-$stmt = $pdo->prepare($query);
-$stmt->bindParam(':theme', $theme, PDO::PARAM_STR);  // Lier le paramètre du thème
-$stmt->execute();
-
-// Récupérer les résultats sous forme de tableau associatif
-$questions = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$groupedQuestions = [];
+foreach ($allQuestions as $question) {
+    $theme = $question['theme'];
+    if (!isset($groupedQuestions[$theme])) {
+        $groupedQuestions[$theme] = [];
+    }
+    $groupedQuestions[$theme][] = $question;
+}
 ?>
-
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -25,57 +24,92 @@ $questions = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <title>Quiznight</title>
+    <style>
+        .correct-answer { display: none; }
+        .choice {
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .choice.selected { pointer-events: none; }
+        .choice.correct { background-color: #d4edda !important; }
+        .choice.incorrect { background-color: #f8d7da !important; }
+    </style>
 </head>
 <body>
-    <!-- Navigation -->
+
     <nav>
         <div class="nav-title">
-            <h1>Quiznight</h1> <!-- Titre à l'intérieur de la navigation -->
+            <h1>Quiznight</h1>
         </div>
         <ul>
             <li><a href="index.php">Accueil</a></li>
-            <li><a href="connexion.html">Se connecter</a></li>
+            <li><a href="connexion.php">Se connecter</a></li>
         </ul>
     </nav>
 
-    <!-- Liste des thèmes -->
+    <!-- Le reste du contenu -->
     <div class="themes">
-        <details>
-            <summary>Animaux</summary>
-            <h2>test</h2>
-        </details>
-        <details>
-            <summary>Arts</summary>
-            <h2>test</h2>
-        </details>
-        <details>
-            <summary>Mangas</summary>
-            <h2>test</h2>
-        </details>
-        <details>
-            <summary>Cinéma</summary>
-            <h2>test</h2>
-        </details>
-        <details>
-            <summary>Musique</summary>
-            <h2>test</h2>
-        </details>
-        <details>
-            <summary>Football</summary>
-            <?php if (!empty($choix)): ?>
-    <ul>
-        <?php foreach ($choix as $choixReponse): ?>
-            <li><?php echo htmlspecialchars($choixReponse['choix']); ?></li>
+        <?php foreach ($groupedQuestions as $theme => $questions): ?>
+            <details>
+                <summary><?= htmlspecialchars(ucfirst($theme)) ?></summary>
+                <ul>
+                    <?php foreach ($questions as $question): ?>
+                        <li class="question-container">
+                            <h3><?= htmlspecialchars($question['questions']) ?></h3>
+                            <ul class="choices-list">
+                                <?php 
+                                $choices = explode(', ', $question['choix']);
+                                $correctAnswer = trim($question['réponses']);
+                                foreach ($choices as $choice): 
+                                    $trimmedChoice = trim($choice);
+                                    $isCorrect = $trimmedChoice === $correctAnswer;
+                                ?>
+                                    <li class="choice" data-correct="<?= $isCorrect ? 'true' : 'false' ?>">
+                                        <?= htmlspecialchars($trimmedChoice) ?>
+                                    </li>
+                                <?php endforeach; ?>
+                            </ul>
+                            <p class="correct-answer">
+                                <strong>Réponse correcte :</strong> 
+                                <?= htmlspecialchars($correctAnswer) ?>
+                            </p>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+            </details>
         <?php endforeach; ?>
-    </ul>
-<?php else: ?>
-    <p>Aucun choix de réponse disponible.</p>
-<?php endif; ?>
-    </section>
-        </details>
     </div>
 
-    
-
+    <script>
+        document.querySelectorAll('.choice').forEach(choice => {
+            choice.addEventListener('click', function() {
+                // Désactiver les autres réponses
+                const questionContainer = this.closest('.question-container');
+                const allChoices = questionContainer.querySelectorAll('.choice');
+                
+                // Marquer la réponse sélectionnée
+                allChoices.forEach(c => c.classList.add('selected'));
+                
+                // Vérifier la réponse
+                const isCorrect = this.dataset.correct === 'true';
+                
+                // Appliquer le style
+                this.style.backgroundColor = isCorrect ? '#d4edda' : '#f8d7da';
+                this.style.borderLeft = `4px solid ${isCorrect ? '#28a745' : '#dc3545'}`;
+                
+                // Afficher la réponse correcte
+                questionContainer.querySelector('.correct-answer').style.display = 'block';
+                
+                // Colorer toutes les réponses
+                allChoices.forEach(c => {
+                    if(c.dataset.correct === 'true') {
+                        c.classList.add('correct');
+                    } else {
+                        c.classList.add('incorrect');
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
