@@ -42,13 +42,13 @@ CREATE TABLE IF NOT EXISTS `quiz` (
 --
 
 INSERT INTO `quiz` (`id`, `questions`, `choix de réponses`, `réponses`, `nombre d'essais`) VALUES
-(1, 'Qui à réalisé Inception ?', 'Christopher Nolan, Steven Spielberg, Quentin Tarantino', 'Christopher Nolan', 0),
-(2, 'Quel film a remporté l’Oscar du meilleur film en 2020 ?', 'Parasite, 1917, Joker\r\n', 'Parasite', 0),
-(3, 'Quel est le nom de l\'album le plus vendu de Michael Jackson ?', ' Thriller, Bad, Dangerous', 'Thriller', 0),
-(4, ' Qui a chanté \"Like a Rolling Stone?', 'Bob Dylan, Elvis Presley, John Lennon', 'Bob Dylan', 0),
-(5, 'Quel pays a remporté la Coupe du Monde de football en 2018 ?', 'France, Brésil, Allemagne', 'France', 0),
-(6, 'Qui est le meilleur buteur de l\'histoire de la Ligue des Champions ?', 'Cristiano Ronaldo, Lionel Messi, Raul', 'Cristiano Ronaldo', 0),
-(7, 'Quel est l\'animal le plus rapide ?', 'Guépard, Aigle royal, Autruche', 'Guépard', 0),
+(1, 'Qui à réalisé Inception ?', 'Christopher Nolan', 'Steven Spielberg', 'Quentin Tarantino', 'Christopher Nolan', 0),
+(2, 'Quel film a remporté l\’Oscar du meilleur film en 2020 ?', 'Parasite', '1917', 'Joker\r\n', 'Parasite', 0),
+(3, 'Quel est le nom de l\'album le plus vendu de Michael Jackson ?', 'Thriller', 'Bad', 'Dangerous', 'Thriller', 0),
+(4, 'Qui a chanté "Like a Rolling Stone?"', 'Bob Dylan' , 'Elvis Presley', 'John Lennon', 'Bob Dylan', 0),
+(5, 'Quel pays a remporté la Coupe du Monde de football en 2018 ?', 'France', 'Brésil', 'Allemagne', 'France', 0),
+(6, 'Qui est le meilleur buteur de l\'histoire de la Ligue des Champions ?', 'Cristiano Ronaldo', 'Lionel Messi', 'Raul', 'Cristiano Ronaldo', 0),
+(7, 'Quel est l\'animal le plus rapide ?', 'Guépard', 'Aigle royal','Autruche', 'Guépard', 0),
 (8, 'Combien de cœurs a un poulpe ?', '2,3,4', '3', 0),
 (9, 'Qui a peint \"La Joconde\" ?', 'Leonardo da Vinci, Pablo Picasso, Vincent van Gogh', 'Leonardo da Vinci', 0),
 (10, 'Quel mouvement artistique est associé à Salvador Dali?', 'Surréalisme, Cubisme, Impressionnisme', 'Surréalisme', 0),
