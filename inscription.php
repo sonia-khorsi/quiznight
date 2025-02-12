@@ -50,7 +50,7 @@ if ($_POST) {
                 </div>
                 <?php if (!isset($_SESSION['nom_utilisateur'])) {
                     echo "<li><a href='>Connexion</a></li>";
-                    echo "<li><a href='>S'inscrire</a></li>";
+                    
                 } else {
                     echo "<div>";
                     echo "<li><a href='#'>" . $_SESSION['nom_utilisateur'] . "</a></li>";
