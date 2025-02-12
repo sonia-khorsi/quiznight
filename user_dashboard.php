@@ -14,17 +14,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $choix = htmlspecialchars($_POST['choices']);
     $reponse = htmlspecialchars($_POST['correct_answer']);
     $theme = htmlspecialchars($_POST['theme']);
+    $essais = intval($_POST['attempts']);
 
     try {
         $pdo = Connection::getPDO();
         $stmt = $pdo->prepare("
             INSERT INTO quiz 
-            (questions, `choix de réponses`, réponses, theme)
-            VALUES (?, ?, ?, 0, ?)
+            (questions, `choix`, réponses, `nombre d'essais`, theme)
+            VALUES (?, ?, ?, ?, ?)
         ");
         $stmt->execute([$question, $choix, $reponse, $essais, $theme]);
         
-        header('Location: gestion_quiz.php');
+        header('Location: user_dashboard.php');
         exit();
     } catch (PDOException $e) {
         $error = "Erreur lors de la création du quiz : " . $e->getMessage();
