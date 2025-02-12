@@ -45,7 +45,7 @@ if ($_POST) {
                 <div>
                     <li><a href="index.php">Accueil</a></li>
                     <li><a href="connexion.php">Se Connnecter</a></li>
-                    <li><a href="inscription.php">Inscription.php</a></li>
+                    <li><a href="inscription.php">s'inscrire</a></li>
 
                 </div>
                 <?php if (!isset($_SESSION['nom_utilisateur'])) {
