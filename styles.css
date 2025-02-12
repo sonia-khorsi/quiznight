@@ -1,153 +1,248 @@
-/* Général */
+/* Reset des styles par défaut */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f7f7f7;
+  color: #333;
+  line-height: 1.6;
+}
+
+nav {
+  background-color: #333;
+  color: white;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-title h1 {
+  text-align: center;
   
-  body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-  }
-  
-  /* Navigation */
-  nav {
-    background-color: #333;  /* Fond sombre pour la navigation */
-    padding: 10px 20px;
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 100%;  /* Laisser toute la largeur pour la nav */
-    z-index: 1000;  /* Toujours en haut, même si on scrolle */
-    display: flex;
-    
-  }
-  
-  nav ul {
-    display: flex;
-    justify-content: flex-end;  /* Aligner les éléments à droite */
-    list-style: none;
-    margin-left: 60%;
-    align-items: center; 
-  }
-  
-  nav ul li {
-    margin-left: 20px;  /* Espacement entre les éléments */
-  }
-  
-  nav ul li a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 18px;
-    padding: 10px 20px;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;  /* Effet de transition pour le survol */
-  }
-  
-  nav ul li a:hover {
-    background-color: #007bff;  /* Change la couleur du fond au survol */
-  }
-  
-  nav ul li a:active {
-    background-color: #0056b3;  /* Change la couleur quand on clique */
-  }
-  
-  /* Réagir à la taille de l'écran */
-  @media screen and (max-width: 768px) {
-    nav ul {
-      flex-direction: column;  /* Empiler les éléments en vertical sur petits écrans */
-      align-items: center;
-    }
-    nav ul li {
-      margin: 10px 0;
-    }
-  }
-  /* Réinitialisation des styles par défaut */
+  font-weight: bold;
+  color: white; /* Assurez-vous que le titre est visible sur le fond sombre */
+
+ 
+}
+
+ul {
+  list-style: none;
+  display: flex;
+  gap: 15p
+}
+
+ul li a {
+  color: white;
+  text-decoration: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+ul li a:hover {
+  background-color: #575757;
+}
+
+.themes {
+  margin: 20px;
+}
+
+details {
+  margin-bottom: 15px;
+  background-color: #ffffff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+details summary {
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+details h2 {
+  margin-top: 10px;
+  color: #333;
+}
+
+details ul {
+  margin-top: 10px;
+  list-style-type: none;
+}
+
+details ul li {
+  background-color: #f4f4f4;
+  padding: 8px;
+  border-radius: 5px;
+  margin-bottom: 8px;
+}
+
+details p {
+  font-size: 14px;
+  color: #777;
+}
+
+footer {
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+}
+
+footer p {
+  font-size: 14px;
+}
+
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  /* Corps de la page */
-  body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
-  }
-  
-  /* Section du formulaire de connexion */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+}
+
+header {
+  background-color: #333;
+  color: white;
+  padding: 10px;
+  text-align: center;
+}
+
+header nav ul {
+  list-style: none;
+  padding: 0;
+  text-align: center;
+}
+
+header nav ul li {
+  display: inline;
+  margin-right: 15px;
+}
+
+header nav ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+h1, h2 {
+  color: #333;
+}
+
+main {
+  padding: 20px;
+}
+
+footer {
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 10px;
+}
+
+.btn-primary {
+  background-color: #3399ff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.btn-primary:hover {
+  background-color: #0066cc;
+}
+
+nav .nav-title h1 {
+  font-size: 30px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+/* Formulaire de connexion */
+.login-container {
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.login-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #0c0b0b;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-size: 14px;
+  color: #555;
+}
+
+.form-group input {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.form-group input:focus {
+  border-color: #3399ff;
+  outline: none;
+}
+
+footer {
+  font-size: 14px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
   .login-container {
-    max-width: 400px;
-    margin: 100px auto; /* Centrer le formulaire */
-    background-color: #fff;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .login-container h2 {
-    text-align: center;
-    font-size: 2em;
-    margin-bottom: 20px;
-  }
-  
-  .login-form .form-group {
-    margin-bottom: 15px;
-  }
-  
-  .login-form label {
-    display: block;
-    font-size: 1.1em;
-    margin-bottom: 5px;
-  }
-  
-  .login-form input {
-    width: 100%;
-    padding: 12px;
-    font-size: 1em;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    margin-bottom: 10px;
-  }
-  
-  .login-form input:focus {
-    border-color: #007bff;
-    outline: none;
-  }
-  
-  .login-form button {
-    width: 100%;
     padding: 15px;
-    background-color: #007bff;
-    color: white;
-    font-size: 1.2em;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .login-form button:hover {
-    background-color: #0056b3;
-  }
-  
-  /* Footer */
-  footer {
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    padding: 20px;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-  }
-  .nav-title h1 {
-    color: #fff;
-    font-size: 1.8em; 
-    margin-right: 20px;
+    margin: 20px;
   }
 
-  nav {
+  header nav ul {
     display: flex;
+    justify-content: center;
+    margin-top: 10px;
   }
+
+  header nav ul li {
+    display: block;
+    margin: 10px 0;
+  }
+}
+.error-message {
+  color: #dc3545;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #f5c6cb;
+  border-radius: 4px;
+  background-color: #f8d7da;
+}
