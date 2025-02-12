@@ -44,13 +44,13 @@ if ($_POST) {
             <ul>
                 <div>
                     <li><a href="index.php">Accueil</a></li>
-                    <li><a href="connexion.php">Se Connnecter</a></li>
+                    <li><a href="connexion.php">Se Connecter</a></li>
                     <li><a href="inscription.php">S'inscrire</a></li>
 
                 </div>
                 <?php if (!isset($_SESSION['nom_utilisateur'])) {
                     echo "<li><a href='>connexion</a></li>";
-                    echo "<li><a href='>S'inscrire</a></li>";
+                    
                 } else {
                     echo "<div>";
                     echo "<li><a href='#'>" . $_SESSION['nom_utilisateur'] . "</a></li>";
