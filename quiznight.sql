@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : mar. 11 fév. 2025 à 09:10
+-- Généré le : mar. 11 fév. 2025 à 10:36
 -- Version du serveur : 9.1.0
 -- Version de PHP : 8.3.14
 
@@ -30,55 +30,31 @@ SET time_zone = "+00:00";
 DROP TABLE IF EXISTS `quiz`;
 CREATE TABLE IF NOT EXISTS `quiz` (
   `id` int NOT NULL AUTO_INCREMENT,
+  `thème` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `questions` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `choix de réponses` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `réponses` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `nombre d'essais` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `quiz`
 --
 
-INSERT INTO `quiz` (`id`, `questions`, `choix de réponses`, `réponses`, `nombre d'essais`) VALUES
-(1, 'Qui à réalisé Inception ?', 'Christopher Nolan', 'Steven Spielberg', 'Quentin Tarantino', 'Christopher Nolan', 0),
-(2, 'Quel film a remporté l\’Oscar du meilleur film en 2020 ?', 'Parasite', '1917', 'Joker\r\n', 'Parasite', 0),
-(3, 'Quel est le nom de l\'album le plus vendu de Michael Jackson ?', 'Thriller', 'Bad', 'Dangerous', 'Thriller', 0),
-(4, 'Qui a chanté "Like a Rolling Stone?"', 'Bob Dylan' , 'Elvis Presley', 'John Lennon', 'Bob Dylan', 0),
-(5, 'Quel pays a remporté la Coupe du Monde de football en 2018 ?', 'France', 'Brésil', 'Allemagne', 'France', 0),
-(6, 'Qui est le meilleur buteur de l\'histoire de la Ligue des Champions ?', 'Cristiano Ronaldo', 'Lionel Messi', 'Raul', 'Cristiano Ronaldo', 0),
-(7, 'Quel est l\'animal le plus rapide ?', 'Guépard', 'Aigle royal','Autruche', 'Guépard', 0),
-(8, 'Combien de cœurs a un poulpe ?', '2,3,4', '3', 0),
-(9, 'Qui a peint \"La Joconde\" ?', 'Leonardo da Vinci, Pablo Picasso, Vincent van Gogh', 'Leonardo da Vinci', 0),
-(10, 'Quel mouvement artistique est associé à Salvador Dali?', 'Surréalisme, Cubisme, Impressionnisme', 'Surréalisme', 0),
-(11, ' [\'question\' => \'Qui est le créateur de \"Naruto\" ?\', \'options\' => [\'Masashi Kishimoto\', \'Eiichiro Oda\', \'Akira Toriyama\'], \'answer\' => \'Masashi Kishimoto\'],\r\n        [\'question\' => \'Dans \"One Piece\", quel est le rêve de Luffy ?\', \'options\' => [\'Devenir le', 'Masashi Kishimoto, Eiichiro Oda, Akira Toriyama', 'Masashi Kishimoto', 0),
-(12, 'Dans \"One Piece\", quel est le rêve de Luffy ?', 'Devenir le roi des pirates, Trouver le Trésor, Devenir le plus fort', 'Devenir le roi des pirates ', 0);
-
--- --------------------------------------------------------
-
---
--- Structure de la table `thème`
---
-
-DROP TABLE IF EXISTS `thème`;
-CREATE TABLE IF NOT EXISTS `thème` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `nom` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Déchargement des données de la table `thème`
---
-
-INSERT INTO `thème` (`id`, `nom`) VALUES
-(1, 'cinema'),
-(2, 'musique'),
-(3, 'football'),
-(4, 'animaux'),
-(5, 'art'),
-(6, 'manga');
+INSERT INTO `quiz` (`id`, `thème`, `questions`, `choix de réponses`, `réponses`, `nombre d'essais`) VALUES
+(1, 'cinema', 'Qui à réalisé Inception ?', 'Christopher Nolan, Steven Spielberg, Quentin Tarantino', 'Christopher Nolan', 0),
+(2, 'cinema', 'Quel film a remporté l’Oscar du meilleur film en 2020 ?', 'Parasite, 1917, Joker\r\n', 'Parasite', 0),
+(3, 'musique', 'Quel est le nom de l\'album le plus vendu de Michael Jackson ?', ' Thriller, Bad, Dangerous', 'Thriller', 0),
+(4, 'musique', ' Qui a chanté \"Like a Rolling Stone\"?', 'Bob Dylan, Elvis Presley, John Lennon', 'Bob Dylan', 0),
+(5, 'football', 'Quel pays a remporté la Coupe du Monde de football en 2018 ?', 'France, Brésil, Allemagne', 'France', 0),
+(6, 'football', 'Qui est le meilleur buteur de l\'histoire de la Ligue des Champions ?', 'Cristiano Ronaldo, Lionel Messi, Raul', 'Cristiano Ronaldo', 0),
+(7, 'animaux', 'Quel est l\'animal le plus rapide ?', 'Guépard, Aigle royal, Autruche', 'Guépard', 0),
+(8, 'animaux', 'Combien de cœurs a un poulpe ?', '2,3,4', '3', 0),
+(9, 'art', 'Qui a peint \"La Joconde\" ?', 'Leonardo da Vinci, Pablo Picasso, Vincent van Gogh', 'Leonardo da Vinci', 0),
+(10, 'art', 'Quel mouvement artistique est associé à Salvador Dali?', 'Surréalisme, Cubisme, Impressionnisme', 'Surréalisme', 0),
+(11, 'manga', 'Qui est le créateur de \"Naruto\"?', 'Masashi Kishimoto, Eiichiro Oda, Akira Toriyama', 'Masashi Kishimoto', 0),
+(12, 'manga', 'Dans \"One Piece\", quel est le rêve de Luffy ?', 'Devenir le roi des pirates, Trouver le Trésor, Devenir le plus fort', 'Devenir le roi des pirates ', 0);
 
 -- --------------------------------------------------------
 
