@@ -37,7 +37,6 @@ if ($_POST) {
     <meta charset="UTF-8">
     
     <link rel="stylesheet" href="styles.css" >
-    <section class="login-container"></section>
     <title>Inscription</title>
 </head>
 <header>
@@ -65,6 +64,7 @@ if ($_POST) {
 
 <body>
     <main>
+    <section class="login-container"></section>
     <form action="inscription.php" method="post">
         <div> <label for="nom_utilisateur">Nom d'utilisateur:</label>
             <input type="text" id="nom_utilisateur" name="nom_utilisateur" required>
