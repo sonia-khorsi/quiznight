@@ -24,7 +24,8 @@ $error = $_GET['error'] ?? null;
 
     <section class="login-container">
         <h2>Se connecter</h2>
-        <?php if ($error): ?>
+        <?php if ($error): 
+            ?>
             <div class="error-message"><?= htmlspecialchars($error) ?></div>
         <?php endif; ?>
         <form action="traitement_connexion.php" method="POST" class="login-form">
