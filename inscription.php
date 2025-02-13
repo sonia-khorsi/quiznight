@@ -37,7 +37,6 @@ if ($_POST) {
     <meta charset="UTF-8">
     
     <link rel="stylesheet" href="styles.css" >
-    <section class="login-container"></section>
     <title>Inscription</title>
 </head>
 <header>
