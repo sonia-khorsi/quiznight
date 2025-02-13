@@ -2,6 +2,7 @@
 session_start();
 $error = $_GET['error'] ?? null;
 ?>
+ 
 <!DOCTYPE html>
 <html lang="fr">
 <head>
