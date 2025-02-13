@@ -1,6 +1,31 @@
 <?php
 session_start();
 $error = $_GET['error'] ?? null;
+require "Connection_BDD.php";
+if (isset($_SESSION["nom_utilisateur"])) {
+    header('Location: index.php');
+}
+
+if ($_POST) {
+    $nom_utilisateur = $_POST["nom_utilisateur"];
+    $mot_de_passe = password_hash($_POST['mot_de_passe'], PASSWORD_DEFAULT); // Hash le mot de passe pour le stocker dans la base de données
+
+    // Prépare la requête pour sélectionner les données de l'utilisateur, permettant de vérifier si le nom d'utilisateur est déjà utilisé ou non.
+    $requete = $connexion->prepare("SELECT * FROM utilisateurs WHERE nom_utilisateur = :nom_utilisateur");
+    $requete->execute(['nom_utilisateur' => $nom_utilisateur]);
+    $reponse = $requete->fetch(PDO::FETCH_ASSOC);
+
+    if ($reponse) {
+        echo "Nom d'utilisateur déjà utilisé";
+    } else {
+        $requete = $connexion->prepare("INSERT INTO utilisateurs (nom_utilisateur, mot_de_passe) VALUES (:nom_utilisateur, :mot_de_passe)");
+        $requete->execute([
+            'nom_utilisateur' => $nom_utilisateur,
+            'mot_de_passe' => $mot_de_passe
+        ]);
+        header('Location: .php');
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="fr">
