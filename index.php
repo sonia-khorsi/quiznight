@@ -2,8 +2,6 @@
 include 'Connection_BDD.php';
 
 $pdo = Connection::getPDO();
-$mot_de_passe = password_hash($_POST['mot_de_passe'], PASSWORD_DEFAULT); // Hash le mot de passe pour le stocker dans la base de données
-
 $queryAll = "SELECT * FROM quiz ORDER BY `theme`";
 $stmtAll = $pdo->query($queryAll);
 $allQuestions = $stmtAll->fetchAll(PDO::FETCH_ASSOC);
