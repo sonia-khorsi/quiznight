@@ -30,50 +30,45 @@ if ($_POST) {
 ?>
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <meta charset="UTF-8">
-    
-    <link rel="stylesheet" href="styles.css" >
-    <title>Inscription</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Inscription - Quiznight</title>
 </head>
-<header>
-        <nav>
-            <ul>
-                <div>
-                    <li><a href="index.php">Accueil</a></li>
-                    <li><a href="connexion.php">Se Connecter</a></li>
-                    <li><a href="inscription.php">S'inscrire</a></li>
-
-                </div>
-                <?php if (!isset($_SESSION['nom_utilisateur'])) {
-                    echo "<li><a href='>connexion</a></li>";
-                    
-                } else {
-                    echo "<div>";
-                    echo "<li><a href='#'>" . $_SESSION['nom_utilisateur'] . "</a></li>";
-                    echo "<li><a href='deconnexion.php'>Déconnexion</a></li>";
-                    echo "</div>";
-                }
-                ?>
-            </ul>
-        </nav>
-    </header>
-
 <body>
-    <main>
-        
-    <form action="inscription.php" method="post">
-        <div> <label for="nom_utilisateur">Nom d'utilisateur:</label>
-            <input type="text" id="nom_utilisateur" name="nom_utilisateur" required>
+    <nav>
+        <div class="nav-title">
+            <h1>Quiznight</h1>
         </div>
+        <ul>
+            <li><a href="index.php">Accueil</a></li>
+            <li><a href="connexion.php">Se connecter</a></li>
+            <li><a href="inscription.php"> S'inscrire</a> </li>
+        </ul>
+    </nav>
 
-        <div> <label for="mot_de_passe">Mot de passe:</label>
-            <input type="password" id="mot_de_passe" name="mot_de_passe" required>
-        </div>
+    <section class="login-container">
+        <h2>S'inscrire</h2>
+        <?php if ($error): 
+            ?>
+            <div class="error-message"><?= htmlspecialchars($error) ?></div>
+        <?php endif; ?>
+        <form action="traitement_connexion.php" method="POST" class="login-form">
+            <div class="form-group">
+                <label for="username">Nom d'utilisateur</label>
+                <input type="text" id="username" name="username" required placeholder="Entrez votre nom d'utilisateur">
+            </div>
+            <div class="form-group">
+                <label for="password">Mot de passe</label>
+                <input type="password" id="password" name="password" required placeholder="Entrez votre mot de passe">
+            </div>
+            <button type="submit" class="btn-primary">Se connecter</button>
+        </form>
+    </section>
 
-        <input type="submit" value="S'inscrire">
-    </form>
+    <footer>
+        <p>&copy; 2025 Quiznight. Tous droits réservés.</p>
+    </footer>
 </body>
-    </main>
 </html>
