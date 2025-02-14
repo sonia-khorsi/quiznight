@@ -65,7 +65,7 @@ if ($_POST) {
                 <label for="password">Mot de passe</label>
                 <input type="password" id="password" name="password" required placeholder="Entrez votre mot de passe">
             </div>
-            <button type="submit" class="btn-primary">S'inscrire</button>
+            <button type="submit" class="btn-primary">S'inscri</button>
         </form>
     </section>
 
