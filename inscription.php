@@ -1,7 +1,5 @@
 <!-- Récupère le fichier de connexion à la base de données -->
 
-<!-- Récupère le fichier de connexion à la base de données -->
-
 <?php session_start();
 require "Connection_BDD.php";
 if (isset($_SESSION["nom_utilisateur"])) {
