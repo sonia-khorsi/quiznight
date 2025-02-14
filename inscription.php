@@ -2,6 +2,8 @@
 
 <?php session_start();
 require "Connection_BDD.php";
+$error = $_GET['error'] ?? null;
+
 if (isset($_SESSION["nom_utilisateur"])) {
     header('Location: index.php');
 }
