@@ -3,6 +3,7 @@ include 'Connection_BDD.php';
 
 $pdo = Connection::getPDO();
 
+
 $queryAll = "SELECT * FROM quiz ORDER BY `theme`";
 $stmtAll = $pdo->query($queryAll);
 $allQuestions = $stmtAll->fetchAll(PDO::FETCH_ASSOC);
@@ -44,6 +45,7 @@ foreach ($allQuestions as $question) {
         <ul>
             <li><a href="index.php">Accueil</a></li>
             <li><a href="connexion.php">Se connecter</a></li>
+         
         </ul>
     </nav>
 
@@ -55,7 +57,7 @@ foreach ($allQuestions as $question) {
                 <ul>
                     <?php foreach ($questions as $question): ?>
                         <li class="question-container">
-                            <h3><?= htmlspecialchars($question['questions']) ?></h3>
+                            <h3><?= htmlspecialchars($question['questions']) ?></h3>6*36
                             <ul class="choices-list">
                                 <?php 
                                 $choices = explode(', ', $question['choix']);
@@ -79,6 +81,7 @@ foreach ($allQuestions as $question) {
             </details>
         <?php endforeach; ?>
     </div>
+    
 
     <script>
         document.querySelectorAll('.choice').forEach(choice => {
