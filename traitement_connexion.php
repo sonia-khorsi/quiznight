@@ -11,9 +11,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
    
     // Hash le mot de passe pour le stocker dans la base de données
     if ($_POST) {
-        $nom_utilisateur = $_POST["nom_utilisateur"];
-        $mot_de_passe = password_hash($_POST['mot_de_passe'], PASSWORD_DEFAULT);
-        echo $mot_de_passe = password_hash($_POST['mot_de_passe'], PASSWORD_DEFAULT);
+        $username = trim($_POST['username']);
+        $password = trim($_POST['password']);
+        $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+        echo  password_hash($_POST['password'], PASSWORD_DEFAULT);
     try {
         // Recherche de l'utilisateur
         $stmt = $pdo->prepare("SELECT * FROM `utilisateurs` WHERE `nom _utilisateur` = ?");
