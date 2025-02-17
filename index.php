@@ -57,7 +57,7 @@ foreach ($allQuestions as $question) {
                 <ul>
                     <?php foreach ($questions as $question): ?>
                         <li class="question-container">
-                            <h3><?= htmlspecialchars($question['questions']) ?></h3>6*36
+                            <h3><?= htmlspecialchars($question['questions']) ?></h3>
                             <ul class="choices-list">
                                 <?php 
                                 $choices = explode(', ', $question['choix']);
