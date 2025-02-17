@@ -8,7 +8,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Nettoyage des entrées
     $username = trim($_POST['username']);
     $password = trim($_POST['password']);
-    
     try {
         // Recherche de l'utilisateur
         $stmt = $pdo->prepare("SELECT * FROM `utilisateurs` WHERE `nom _utilisateur` = ?");
