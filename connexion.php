@@ -1,7 +1,6 @@
 <?php
 session_start();
 $error = $_GET['error'] ?? null;
-session_start();
 require 'Connection_BDD.php';
 //ici on essaye de ce connecter mais :
 
