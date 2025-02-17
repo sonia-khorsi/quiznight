@@ -56,7 +56,7 @@ if ($_POST) {
             ?>
             <div class="error-message"><?= htmlspecialchars($error) ?></div>
         <?php endif; ?>
-        <form action="traitement_connexion.php" method="POST" class="login-form">
+        <form action="traitement_inscrption.php" method="POST" class="login-form">
             <div class="form-group">
                 <label for="username">Nom d'utilisateur</label>
                 <input type="text" id="username" name="username" required placeholder="Entrez votre nom d'utilisateur">
