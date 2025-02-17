@@ -8,7 +8,9 @@ if (isset($_SESSION["nom_utilisateur"])) {
     header('Location: index.php');
 }
 
-
+if ($_POST) {
+    $nom_utilisateur = $_POST["nom_utilisateur"];
+    $mot_de_passe = password_hash($_POST['mot_de_passe'], PASSWORD_DEFAULT); // Hash le mot de passe pour le stocker dans la base de données
 
     // Prépare la requête pour sélectionner les données de l'utilisateur, permettant de vérifier si le nom d'utilisateur est déjà utilisé ou non.
     $requete = $connexion->prepare("SELECT * FROM utilisateurs WHERE nom_utilisateur = :nom_utilisateur");
@@ -25,7 +27,7 @@ if (isset($_SESSION["nom_utilisateur"])) {
         ]);
         header('Location: .php');
     }
-
+}
 
 ?>
 <!DOCTYPE html>
@@ -54,7 +56,7 @@ if (isset($_SESSION["nom_utilisateur"])) {
             ?>
             <div class="error-message"><?= htmlspecialchars($error) ?></div>
         <?php endif; ?>
-        <form action="traitement_inscription.php" method="POST" class="login-form">
+        <form action="traitement_connexion.php" method="POST" class="login-form">
             <div class="form-group">
                 <label for="username">Nom d'utilisateur</label>
                 <input type="text" id="username" name="username" required placeholder="Entrez votre nom d'utilisateur">
