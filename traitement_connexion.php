@@ -10,12 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = trim($_POST['username']);
     $password = trim($_POST['password']);
    
-    // Hash le mot de passe pour le stocker dans la base de données
-    if ($_POST) {
-        $username = trim($_POST['username']);
-        $password = trim($_POST['password']);
-        $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-        echo  password_hash($_POST['password'], PASSWORD_DEFAULT);
+    
     try {
         // Recherche de l'utilisateur
         $stmt = $pdo->prepare("SELECT * FROM `utilisateurs` WHERE `nom _utilisateur` = ?");
@@ -48,4 +43,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     header('Location: connexion.php');
     exit();
 }
-}
+
