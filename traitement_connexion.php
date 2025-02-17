@@ -1,6 +1,7 @@
 <?php
 session_start();
 require 'Connection_BDD.php';
+//ici on essaye de ce connecter mais :
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $pdo = Connection::getPDO();
