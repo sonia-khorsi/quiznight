@@ -1,32 +1,9 @@
-<?php 
+<?php
+session_start();
+$error = $_GET['error'] ?? null;
+require 'Connection_BDD.php';
+//ici on essaye de ce connecter mais :
 
- session_start();
-require "quiz-night(2).sql";
-
-
-if ($_POST) {
-    $nom_utilisateur = $_POST['nom_utilisateur'];
-    $mot_de_passe = $_POST['mot_de_passe'];
-
-    //Vérifie si le formulaire a déjà été envoyé (Si $_POST n'est pas vide)
-
-    // Prépare la requête pour sélectionner les données de l'utilisateur, permettant de vérifier si les informations sont correctes ou non.
-    $requete = $connexion->prepare("SELECT * FROM utilisateurs WHERE nom_utilisateur = :nom_utilisateur");
-    $requete->execute(['nom_utilisateur' => $nom_utilisateur]);
-    $reponse = $requete->fetch(PDO::FETCH_ASSOC);
-    $mot_de_passe = $_POST['mot_de_passe'];
-
-    //Vérifie si le mot de passe correspond au mot de passe hashé dans la base de données. Si les identifiants sont bons, on stocke dans la session. Sinon, on affiche un message d'erreur.
-    if ($reponse && password_verify($mot_de_passe, $reponse['mot_de_passe'])) {
-        $_SESSION['nom_utilisateur'] = $_POST['nom_utilisateur'];
-        $_SESSION['id_utilisateur'] = $reponse['id_utilisateur'];
-        $_SESSION['droits'] = $reponse['droits_utilisateur'];
-        header('Location: index.php');
-    } else {
-        echo 'Identifiant ou mot de passe incorrect';
-    }
-}
-echo password_hash ();
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -34,34 +11,27 @@ echo password_hash ();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    <title>Se connecter - Quiznight</title>
+    <title>Connexion - Quiznight</title>
 </head>
 <body>
-    <!-- Navigation -->
     <nav>
-        
-            <ul>
-                <li><a href="index.html">Accueil</a></li>
-                <li><a href="connexion.html">Se connecter</a></li>
-            </ul>
-        
+        <div class="nav-title">
+            <h1>Quiznight</h1>
+        </div>
+        <ul>
+            <li><a href="index.php">Accueil</a></li>
+            <li><a href="connexion.php">Se connecter</a></li>
+            <li><a href="inscription.php"> S'inscrire</a> </li>
+        </ul>
     </nav>
 
-                </div>
-                <?php if (!isset($_SESSION['nom_utilisateur'])) {
-                    echo "<li><a href=''>Connexion</a></li>";
-                    echo "<li><a href=''>S'inscrire</a></li>";
-                } else {
-                    echo "<div>";
-                    echo "<li><a href='#'>" . $_SESSION['nom_utilisateur'] . "</a></li>";
-                    echo "<li><a href='deconnexion.php'>Déconnexion</a></li>";
-                    echo "</div>";
-                }
-                ?>
-                <!-- Formulaire de connexion -->
     <section class="login-container">
         <h2>Se connecter</h2>
-        <form action="dashboard.html" method="POST" class="login-form">
+        <?php if ($error): 
+            ?>
+            <div class="error-message"><?= htmlspecialchars($error) ?></div>
+        <?php endif; ?>
+        <form action="traitement_connexion.php" method="POST" class="login-form">
             <div class="form-group">
                 <label for="username">Nom d'utilisateur</label>
                 <input type="text" id="username" name="username" required placeholder="Entrez votre nom d'utilisateur">
@@ -74,9 +44,8 @@ echo password_hash ();
         </form>
     </section>
 
-    <footer></footer>
-            </ul>
-        </nav>
-    </header>
-    <main>
-    <
+    <footer>
+        <p>&copy; 2025 Quiznight. Tous droits réservés.</p>
+    </footer>
+</body>
+</html>
