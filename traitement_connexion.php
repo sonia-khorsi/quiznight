@@ -1,7 +1,6 @@
 <?php
 session_start();
 require 'Connection_BDD.php';
-//ici on essaye de ce connecter mais :
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $pdo = Connection::getPDO();
@@ -9,7 +8,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Nettoyage des entrées
     $username = trim($_POST['username']);
     $password = trim($_POST['password']);
-   
     
     try {
         // Recherche de l'utilisateur
@@ -43,4 +41,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     header('Location: connexion.php');
     exit();
 }
-
